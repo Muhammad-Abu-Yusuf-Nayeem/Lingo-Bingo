@@ -1,18 +1,32 @@
-import React from "react";
+import React, { use, useContext } from "react";
+import logo from "../../public/logo.png";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
   const links = (
     <>
       <li>
-        <a>Submenu 1</a>
+        <a>Home</a>
       </li>
       <li>
-        <a>Submenu 2</a>
+        <a>Start-learning</a>
+      </li>
+      <li>
+        <a>Tutorials</a>
+      </li>
+      <li>
+        <a>About-us</a>
+      </li>
+      <li>
+        <a>My-profile</a>
       </li>
     </>
   );
+  const authInfo = useContext(AuthContext);
+  const { user } = authInfo;
   return (
-    <div className="navbar shadow-sm">
+    <div className="navbar px-0 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,13 +53,24 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Lingo Bingo</a>
+        <div className="flex items-center gap-2">
+          <img className="w-10 bg-white rounded-xl" src={logo} alt="" />
+          <Link to={`/`} className="btn btn-ghost text-xl px-0">
+            Lingo Bingo
+          </Link>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+      <div className="navbar-end space-x-2">
+        <p>{user?.name}</p>
+        <Link to="/auth/login" className="btn">
+          Login
+        </Link>
+        <Link to="/auth/register" className="btn">
+          Register
+        </Link>
       </div>
     </div>
   );

@@ -1,15 +1,20 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const HomeLayout = () => {
   return (
     <div className="w-11/12 mx-auto py-5">
-      <header>
+      <header className="bg-cyan-300">
         <Navbar></Navbar>
       </header>
-      <Outlet></Outlet>
-      <footer>this is footer</footer>
+      <main className="h-125 bg-blue-400">
+        <Outlet></Outlet>
+      </main>
+      <footer className="">
+        <Footer></Footer>
+      </footer>
     </div>
   );
 };
