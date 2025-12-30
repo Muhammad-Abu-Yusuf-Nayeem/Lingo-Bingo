@@ -1,5 +1,5 @@
-import React, { use, useContext } from "react";
-import logo from "../../public/logo.png";
+import React, { useContext } from "react";
+import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
@@ -24,7 +24,16 @@ const Navbar = () => {
     </>
   );
   const authInfo = useContext(AuthContext);
-  const { user } = authInfo;
+  const { user, logoutUser } = authInfo;
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="navbar px-0 shadow-sm">
       <div className="navbar-start">
@@ -64,13 +73,16 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end space-x-2">
-        <p>{user?.name}</p>
-        <Link to="/auth/login" className="btn">
-          Login
-        </Link>
-        <Link to="/auth/register" className="btn">
-          Register
-        </Link>
+        <p>{user?.email}</p>
+        {user?.email ? (
+          <button onClick={handleLogout} className="btn">
+            Signout
+          </button>
+        ) : (
+          <Link to="/auth/login" className="btn">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
