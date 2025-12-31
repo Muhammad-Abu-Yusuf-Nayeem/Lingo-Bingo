@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { AuthContext } from "../provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const authInfo = useContext(AuthContext);
-  const { user, setUser, createNewUser } = authInfo;
+  const { user, setUser, createNewUser, updateUserData } = authInfo;
+  const navigate = useNavigate();
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -20,6 +21,13 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         setUser(loggedUser);
+        updateUserData({ displayName: name, photoURL: photoURL })
+          .then(() => {
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         console.log(loggedUser);
         form.reset();
       })

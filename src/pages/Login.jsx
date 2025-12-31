@@ -2,11 +2,14 @@ import React, { useContext } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { AuthContext } from "../provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const authInfo = useContext(AuthContext);
   const { setUser, loginUser } = authInfo;
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -19,6 +22,7 @@ const Login = () => {
         const loggedUser = result.user;
         setUser(loggedUser);
         console.log(loggedUser);
+        navigate(location?.state ? location?.state : "/");
         form.reset();
       })
       .catch((error) => {

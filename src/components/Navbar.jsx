@@ -1,30 +1,32 @@
 import React, { useContext } from "react";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, Links } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
+  const authInfo = useContext(AuthContext);
+  const { user, logoutUser } = authInfo;
   const links = (
     <>
       <li>
-        <a>Home</a>
+        <Link to={"/"}>Home</Link>
       </li>
       <li>
-        <a>Start-learning</a>
+        <Link to={"/learning"}>Start-learning</Link>
       </li>
       <li>
-        <a>Tutorials</a>
+        <Link to={"/tutorials"}>Tutorials</Link>
       </li>
       <li>
-        <a>About-us</a>
+        <Link to={"/about"}>About-us</Link>
       </li>
-      <li>
-        <a>My-profile</a>
-      </li>
+      {user?.email && (
+        <li>
+          <Link to={"/profile"}>My-profile</Link>
+        </li>
+      )}
     </>
   );
-  const authInfo = useContext(AuthContext);
-  const { user, logoutUser } = authInfo;
   const handleLogout = () => {
     logoutUser()
       .then(() => {
@@ -73,11 +75,16 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end space-x-2">
-        <p>{user?.email}</p>
         {user?.email ? (
-          <button onClick={handleLogout} className="btn">
-            Signout
-          </button>
+          <>
+            <div className="flex flex-col items-center ">
+              <img className="w-10 rounded-full" src={user.photoURL} alt="" />
+              <p>{user?.displayName}</p>
+            </div>
+            <button onClick={handleLogout} className="btn">
+              Signout
+            </button>
+          </>
         ) : (
           <Link to="/auth/login" className="btn">
             Login
