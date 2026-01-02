@@ -12,7 +12,7 @@ const HomeLayout = () => {
       <header className="">
         <Navbar></Navbar>
       </header>
-      <main className="h-125 bg-blue-400">
+      <main className="min-h-125 ">
         {user?.email && <DefaultHomeComponent></DefaultHomeComponent>}
         <Outlet></Outlet>
       </main>

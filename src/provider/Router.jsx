@@ -3,6 +3,7 @@ import HomeLayout from "../layouts/HomeLayout";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import PrivateRoute from "./PrivateRoute";
+import LetsLearnPage from "../pages/LetsLearnPage";
 
 const Router = createBrowserRouter([
   {
@@ -14,15 +15,15 @@ const Router = createBrowserRouter([
         element: <h2>this is outlet of home</h2>,
       },
       {
-        path: "learning",
-        element: <h2>this is learning page</h2>,
+        path: "/learning",
+        element: <LetsLearnPage></LetsLearnPage>,
       },
       {
-        path: "tutorials",
+        path: "/tutorials",
         element: <h2>this is tutorials page</h2>,
       },
       {
-        path: "about",
+        path: "/about",
         element: <h2>this is about page</h2>,
       },
       // {
@@ -30,7 +31,7 @@ const Router = createBrowserRouter([
       //   element: <h2>this is profile page</h2>,
       // },
       {
-        path: "profile",
+        path: "/profile",
         element: (
           <PrivateRoute>
             <h2>this is profile page</h2>
