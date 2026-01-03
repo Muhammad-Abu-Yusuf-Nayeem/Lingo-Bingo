@@ -1,6 +1,6 @@
-import sliderImage1 from "../../assets/slider (1).jpg";
-import sliderImage2 from "../../assets/slider (2).jpg";
-import sliderImage3 from "../../assets/slider (3).jpg";
+import sliderImage1 from "../../assets/SliderImages.jpg";
+import sliderImage2 from "../../assets/SliderImages.png";
+import sliderImage3 from "../../assets/SliderImages.webp";
 
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
@@ -51,15 +51,17 @@ export default function Slider() {
   );
 
   return (
-    <div ref={sliderRef} className="keen-slider">
-      <div className="keen-slider__slide ">
-        <img className="h-[400px]" src={sliderImage1} />
+    <div ref={sliderRef} className="keen-slider mx-auto w-1/2 h-120 rounded-lg bg-gradient-to-br from-purple-100 via-pink-100 to-blue-100 overflow-hidden ">
+      <div className="keen-slider__slide mx-auto w-fit h-120 flex justify-center items-center">
+        <img className="h-full object-cover" src={sliderImage1} />
       </div>
-      <div className="keen-slider__slide ">
-        <img className="h-[400px]" src={sliderImage2} />
+
+      <div className="keen-slider__slide mx-auto w-fit h-120 flex justify-center items-center">
+        <img className="h-full object-cover" src={sliderImage2} />
       </div>
-      <div className="keen-slider__slide ">
-        <img className="h-[400px]" src={sliderImage3} />
+
+      <div className="keen-slider__slide mx-auto w-fit h-120 flex justify-center items-center">
+        <img className="h-full object-cover" src={sliderImage3} />
       </div>
     </div>
   );

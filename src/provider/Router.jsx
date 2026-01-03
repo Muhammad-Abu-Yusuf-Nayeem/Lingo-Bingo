@@ -5,16 +5,14 @@ import Login from "../pages/Login";
 import PrivateRoute from "./PrivateRoute";
 import LetsLearnPage from "../pages/LetsLearnPage";
 import Slider from "../components/homeComponents/Slider";
+import About from "../pages/About";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
     children: [
-      {
-        path: "",
-        element: <Slider></Slider>,
-      },
+      
       {
         path: "/learning",
         element: <LetsLearnPage></LetsLearnPage>,
@@ -25,7 +23,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <h2>this is about page</h2>,
+        element: <About />,
       },
       // {
       //   path: "profile",
