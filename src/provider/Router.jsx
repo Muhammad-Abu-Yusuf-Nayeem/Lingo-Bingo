@@ -4,6 +4,7 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import PrivateRoute from "./PrivateRoute";
 import LetsLearnPage from "../pages/LetsLearnPage";
+import Slider from "../components/homeComponents/Slider";
 
 const Router = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ const Router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <h2>this is outlet of home</h2>,
+        element: <Slider></Slider>,
       },
       {
         path: "/learning",
